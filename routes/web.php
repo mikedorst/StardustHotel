@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Home\HomeController@index')->name('home');
+Route::get('/kamers', 'Home\RoomController@index')->name('rooms');
+Route::post('/kamers/filter', 'Home\RoomController@filter')->name('filterRooms');
+Route::post('/kamers/search', 'Home\RoomController@search')->name('searchRooms');
+Route::get('/kamers/{id}', 'Home\RoomController@individual')->name('rooms.individual');
