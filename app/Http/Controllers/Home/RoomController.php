@@ -25,9 +25,11 @@ class RoomController extends Controller
         return $availableRooms;
     }
 
-    public function individual(){
+    public function individual($id){
         
-        return view('individualRoom');
+		$room = Rooms::where('type_id', $id)->with('typeRoom', 'reservations')->get();
+		$room_type = room_type::where('id', $id)->first();
+        return view('individualRoom', compact('room', 'room_type'));
     }
 
     public function search(Request $request){

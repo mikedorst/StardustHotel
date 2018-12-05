@@ -39,7 +39,7 @@
                                                     <div id="icon"><i class="fas fa-calendar-plus" style="font-size:25px;"></i></div>&nbsp;&nbsp;<b>Aankomst Datum</b>
                                                 </div>
                                                 <div class="right-col">
-                                                    <input type="datetime-local" id="startDate" name="startDate" class="form-control">
+                                                    <input type="date" id="startDate" name="startDate" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="input-group">
@@ -47,7 +47,7 @@
                                                     <div id="icon"><i class="fas fa-calendar-minus" style="font-size:25px;"></i></div>&nbsp;&nbsp;<b>Vertrek Datum</b>
                                                 </div>
                                                 <div class="right-col">
-                                                    <input type="datetime-local" id="endDate" name="endDate" class="form-control">
+                                                    <input type="date" id="endDate" name="endDate" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="input-group">
