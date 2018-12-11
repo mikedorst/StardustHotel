@@ -38,6 +38,7 @@
 				</div>
 				
 			<p>Date: <input type="text" id="datepicker"></p>
+			<input class="form-control datepicker" />
 			
 			@for($i = 1; $i < 5; $i++)
 				<div class="modal fade bd-example-modal-lg" id="modal{{$i}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">

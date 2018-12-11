@@ -14,7 +14,7 @@ class HomeController extends Controller
     {
         $rooms = Rooms::where('status', 'A')->count();
         $roomTypes = room_type::get();
-		
+				
         return view('welcome', compact('rooms', 'roomTypes'));
     }
 

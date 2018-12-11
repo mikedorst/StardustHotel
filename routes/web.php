@@ -11,8 +11,26 @@
 |
 */
 
-Route::get('/', 'Home\HomeController@index')->name('home');
 Route::get('/kamers', 'Home\RoomController@index')->name('rooms');
 Route::post('/kamers/filter', 'Home\RoomController@filter')->name('filterRooms');
 Route::post('/kamers/search', 'Home\RoomController@search')->name('searchRooms');
 Route::get('/kamers/{id}', 'Home\RoomController@individual')->name('rooms.individual');
+
+Route::get('/contact', 'Home\ContactController@index')->name('contact');
+
+Route::get('/home', 'Home\HomeController@index')->name('home');
+
+Route::get('/logout', 'Home\LogoutController@logout')->name('logout');
+
+Route::group(['middleware' => 'App\Http\Middleware\UserMiddleware'], function()
+{
+	Route::get('/bookings', 'Home\BookingController@index')->name('bookings');	
+	
+	Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
+	{
+		Route::get('/admin', 'Home\AdminController@index')->name('admin');
+	});
+});
+
+Auth::routes();
+
