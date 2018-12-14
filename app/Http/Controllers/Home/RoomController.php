@@ -22,21 +22,32 @@ class RoomController extends Controller
     public function filter(Request $request){
 
         $availableRooms = Rooms::with('typeRoom', 'reservations')->where('type_id', $request->type)->where('status', 'A')->where('space', $request->persons)->get();
-        return $availableRooms;
+		return $availableRooms;
     }
 
     public function individual($id){
         
-		$room = Rooms::where('type_id', $id)->with('typeRoom', 'reservations')->get();
+		$room = Rooms::where('type_id', $id)->with('typeRoom', 'reservations')->where('status', 'A')->get();
 		$room_type = room_type::where('id', $id)->first();
-        return view('individualRoom', compact('room', 'room_type'));
+		
+		$Reservation = Reservation::get();
+		
+		/*$allDates = Array();
+		
+		foreach($Reservation as $r){
+			$arr = (array)$r->reservation_dates;
+			$x = implode(',', $arr);
+			$x = str_replace(']', '', $x);
+			$x = str_replace('[', '', $x);
+			$allDates[] = $x;
+		}*/
+        return view('individualRoom', compact('room', 'room_type', 'Reservation'));
     }
 
     public function search(Request $request){
 
         $start = $request->startDate;
         $endDate = $request->endDate;
-
         $rooms = Rooms::with('typeRoom', 'reservations')->where('status', 'A')->where('space', $request->persons)->get();
 		$roomTypes = room_type::get();
 

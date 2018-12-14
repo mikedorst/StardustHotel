@@ -8,54 +8,54 @@
         <div class="inner-wrapper">
             <div style="height: 200px;"></div>
             @if(!empty($propMessage))
-            <div class="row" id="searchMain" style="display:none;">
-                <div class="sideBar">
-                    <p style="font-size: 30px;padding: 10px 0 0 30px;">Filter</p>
-                    <select class="form-control selectboxRoom" id="roomType2">
-                        <option disabled="disabled" selected="true">Selecteer type kamer</option>
-                        @foreach($roomTypes as $type)
-                            <option value="{{ $type->id }}">{{ $type->type }}</option>
-                        @endforeach
-                    </select>
-                    <select class="form-control selectboxRoom" id="persons2">
-                        <option disabled="disabled" selected="true">Aantal Personen</option>
-                        <option value="2">2 Persoons</option>
-                        <option value="4">4 Persoons</option>
-                        <option value="6">6 Persoons</option>
-                    </select>
-                    <button class="form-control roomSearch" id="setFilter2"><i class="fas fa-search"></i></button>
-                </div>
-                <!--<div style="width:100%;"></div>-->
-                <div class="divSmallRooms" id="divSmallRooms">
-                @foreach($rooms as $r)
-                    @if(!$r->reservations->isEmpty())
-                        @foreach($r->reservations as $reservation)
-                            @if($reservation->reserved_till < $endDate)
-                                <div class="smallRooms">
-                                    <div class="input-group">
-                                        <div style="background-image:url(/room/{{ $r->typeRoom->type }}.jpg)" class="smallCoverImg"></div>
-                                        <div class="roomText">
-                                            <h3>Kamer {{ $r->number}}</h3>
-                                            <a href="kamers/{{ $r->type_id }}"><button class="form-control"><i class="fas fa-shopping-cart"></i> Boek deze kamer!</button></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-                        @endforeach
-                    @else
-                        <div class="smallRooms">
-                            <div class="input-group">
-                                <div style="background-image:url(/room/{{ $r->typeRoom->type }}.jpg)" class="smallCoverImg"></div>
-                                <div class="roomText">
-                                    <h3>Kamer {{ $r->number}}</h3>
-                                    <a href="kamers/{{ $r->type_id }}"><button class="form-control"><i class="fas fa-shopping-cart"></i> Boek deze kamer!</button></a>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                @endforeach
-                </div>
-            </div>
+				<div class="row" id="searchMain" style="display:none;">
+					<div class="sideBar">
+						<p style="font-size: 30px;padding: 10px 0 0 30px;">Filter</p>
+						<select class="form-control selectboxRoom" id="roomType2">
+							<option disabled="disabled" selected="true">Selecteer type kamer</option>
+							@foreach($roomTypes as $type)
+								<option value="{{ $type->id }}">{{ $type->type }}</option>
+							@endforeach
+						</select>
+						<select class="form-control selectboxRoom" id="persons2">
+							<option disabled="disabled" selected="true">Aantal Personen</option>
+							<option value="2">2 Persoons</option>
+							<option value="4">4 Persoons</option>
+							<option value="6">6 Persoons</option>
+						</select>
+						<button class="form-control roomSearch" id="setFilter2"><i class="fas fa-search"></i></button>
+					</div>
+					<!--<div style="width:100%;"></div>-->
+					<div class="divSmallRooms" id="divSmallRooms">
+					@foreach($rooms as $r)
+						@if(!$r->reservations->isEmpty())
+							@foreach($r->reservations as $reservation)
+								@if($reservation->reserved_till < $endDate)
+									<div class="smallRooms">
+										<div class="input-group">
+											<div style="background-image:url(/room/{{ $r->typeRoom->type }}.jpg)" class="smallCoverImg"></div>
+											<div class="roomText">
+												<h5 style="font-size: 1.10rem;">{{$r->typeRoom->type }} Kamer {{ $r->number}}</h5>
+												<a href="kamers/{{ $r->type_id }}"><button class="form-control"><i class="fas fa-shopping-cart"></i> Boek deze kamer!</button></a>
+											</div>
+										</div>
+									</div>
+								@endif
+							@endforeach
+						@else
+							<div class="smallRooms">
+								<div class="input-group">
+									<div style="background-image:url(/room/{{ $r->typeRoom->type }}.jpg)" class="smallCoverImg"></div>
+									<div class="roomText">
+										<h5 style="font-size: 1.10rem;">{{$r->typeRoom->type }} Kamer {{ $r->number}}</h5>
+										<a href="kamers/{{ $r->type_id }}"><button class="form-control"><i class="fas fa-shopping-cart"></i> Boek deze kamer!</button></a>
+									</div>
+								</div>
+							</div>
+						@endif
+					@endforeach
+					</div>
+				</div>
             @endif
             <div class="row" id="Main" style="display:flex;">
                 <div class="sideBar">
@@ -76,7 +76,7 @@
                 </div>
                 @foreach($roomTypes as $type)
                     @if($type->id == 1)
-                        @if($type->type == "Standaard")
+                        @if($type->type == "standaard")
                             <div class="roomListFirst">
                                 <div class="input-group">
                                     <div style="background-image:url(/room/{{ $type->type }}.jpg)" class="roomCoverImg"></div>
@@ -91,7 +91,7 @@
                             </div>
                         @endif
                     @else
-                        @if($type->type == "Luxe")
+                        @if($type->type == "luxe")
                             <div class="roomList">
                                 <div class="input-group">
                                     <div style="background-image:url(/room/{{ $type->type }}.jpg)" class="roomCoverImg"></div>
@@ -105,7 +105,7 @@
                                 </div>
                             </div>
                         @endif
-                        @if($type->type == "Suite")
+                        @if($type->type == "suite")
                             <div class="roomList">
                                 <div class="input-group">
                                     <div style="background-image:url(/room/{{ $type->type }}.jpg)" class="roomCoverImg"></div>
@@ -119,7 +119,7 @@
                                 </div>
                             </div>
                         @endif
-                        @if($type->type == "Penthouse")
+                        @if($type->type == "penthouse")
                             <div class="roomList">
                                 <div class="input-group">
                                     <div style="background-image:url(/room/{{ $type->type }}.jpg)" class="roomCoverImg"></div>
@@ -167,6 +167,7 @@
 
 <script>
 $( document ).ready(function() {
+	
 
     if(location.pathname=="/kamers/search")
     {
@@ -214,6 +215,7 @@ $( document ).ready(function() {
                 
             },
             error: function (data) {
+				console.log(data);
                 new PNotify({
                     title: 'Error!',
                     text: 'Error',

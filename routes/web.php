@@ -19,12 +19,14 @@ Route::get('/kamers/{id}', 'Home\RoomController@individual')->name('rooms.indivi
 Route::get('/contact', 'Home\ContactController@index')->name('contact');
 
 Route::get('/home', 'Home\HomeController@index')->name('home');
+Route::get('/', 'Home\HomeController@index')->name('home');
 
 Route::get('/logout', 'Home\LogoutController@logout')->name('logout');
 
 Route::group(['middleware' => 'App\Http\Middleware\UserMiddleware'], function()
 {
 	Route::get('/bookings', 'Home\BookingController@index')->name('bookings');	
+	Route::post('/bookings/add', 'Home\BookingController@addBooking')->name('bookings.add');	
 	
 	Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
 	{
